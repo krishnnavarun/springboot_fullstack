@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Trains</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body class="list-page">
+    <h1 class="create-edit">Trains</h1>
+    <div class="nav-container">
+        <a class="nav-button" href="/trains/new">Add New Train +</a>
+        <nav>
+            <a href="http://localhost:8080/users">Users <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                    <path
+                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                </svg></a>
+            <a href="http://localhost:8080/tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                    height="16" fill="currentColor" class="bi bi-ticket" viewBox="0 0 16 16">
+                    <path
+                        d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6zM1.5 4a.5.5 0 0 0-.5.5v1.05a2.5 2.5 0 0 1 0 4.9v1.05a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-1.05a2.5 2.5 0 0 1 0-4.9V4.5a.5.5 0 0 0-.5-.5z" />
+                </svg></a>
+        </nav>
+    </div>
+    <table>
+        <tr th:each="train : ${trains}">
+            <td>
+                <div class="card">
+                    <div>
+                        <h4>Train ID:</h4>
+                        <p th:text="${train.id}"></p>
+                    </div>
+                    <div>
+                        <h4>Train name:</h4>
+                        <p th:text="${train.name}"></p>
+                    </div>
+                    <div>
+                        <h4>Source:</h4>
+                        <p th:text="${train.source}"></p>
+                    </div>
+                    <div>
+                        <h4>Destination:</h4>
+                        <p th:text="${train.destination}"></p>
+                    </div>
+                    <div>
+                        <h4>Original Price:</h4>
+                        <p th:text="${train.basePrice}"></p>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <h4>Discount percentage:</h4>
+                        <p th:text="${train.discountPercentage}"></p>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <a class="edit" th:href="@{/trains/edit/{id}(id=${train.id})}">Edit</a>
+                        <a class="delete" th:href="@{/trains/delete/{id}(id=${train.id})}">Delete</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
